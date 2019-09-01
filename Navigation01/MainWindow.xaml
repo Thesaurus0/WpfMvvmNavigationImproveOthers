@@ -4,9 +4,27 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Navigation01"
+        xmlns:vm="clr-namespace:Navigation01.ViewModel"
+        xmlns:v="clr-namespace:Navigation01.View"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
-    <Grid>
-        
-    </Grid>
+    <Window.DataContext>
+        <vm:MainViewModel/>
+    </Window.DataContext>
+    <Window.Resources>
+        <DataTemplate DataType="{x:Type vm:LogInViewModel}">
+            <v:LogInView/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type vm:ThirdViewModel}">
+            <v:ThirdView/>
+        </DataTemplate>
+    </Window.Resources>
+    <StackPanel Margin="10,30,0,0">
+        <TextBox Margin="10,30,0,0"  Width="120"/>
+        <TextBox Margin="10,30,0,0"  Width="120"/>
+
+        <Button Content="Log in" Margin="10,30,0,0" Width="120" Command="{Binding LogInCommand}" />
+
+        <ContentControl Content="{Binding CurrentViewModel}"/>
+    </StackPanel>
 </Window>
